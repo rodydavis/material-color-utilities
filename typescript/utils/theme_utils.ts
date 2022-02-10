@@ -134,3 +134,24 @@ export function customColor(
     },
   };
 }
+
+
+/**
+ * Apply a theme to an element
+ * 
+ * @param theme Theme object
+ * @param options Options
+ */
+export function applyTheme(theme: Theme, options?: {
+  dark?: boolean,
+  target?: HTMLElement,
+}) {
+  const target = options?.target || document.body;
+  const isDark = options?.dark ?? window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const scheme = isDark ? theme.schemes.dark : theme.schemes.light;
+  for (const [key, value] of Object.entries(scheme.toJSON())) {
+    const token = key.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+    const color = hexFromArgb(value);
+    target.style.setProperty(`--md-sys-color-${token}`, color);
+  }
+}
