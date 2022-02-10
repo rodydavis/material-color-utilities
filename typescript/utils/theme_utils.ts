@@ -3,6 +3,7 @@ import { CorePalette } from "../palettes/core_palette";
 import { TonalPalette } from "../palettes/tonal_palette";
 import { Scheme } from "../scheme/scheme";
 import { seedFromImage } from "./image_utils";
+import { hexFromArgb } from "./string_utils.js";
 
 /**
  * Custom color used to pair with a theme
